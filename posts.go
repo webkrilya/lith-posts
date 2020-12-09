@@ -146,7 +146,7 @@ func GetCapcha(uri string, cook []*http.Cookie) (string,error) {
 	return capcha, nil
 }
 
-func DoRegistration(js []byte, cook []*http.Cookie, username string, lastname string, mail string, phone string, password string) (string, error) {
+func DoRegistration(js []byte, cook []*http.Cookie, capcha string, username string, lastname string, mail string, phone string, password string) (string, error) {
 
 	var jsStruct regForm
 
@@ -173,7 +173,7 @@ func DoRegistration(js []byte, cook []*http.Cookie, username string, lastname st
 	params.Set("IsChecked","true");
 	//params.Set("IsChecked","false");
 	params.Set("CaptchaDeText",jsStruct.DeText);
-	params.Set("CaptchaInputText", strings.ToUpper(jsStruct.CapchaUri));
+	params.Set("CaptchaInputText", strings.ToUpper(capcha));
 
 	fmt.Println(params.Encode())
 
