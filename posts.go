@@ -5,6 +5,7 @@ import (
 	"compress/gzip"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -173,6 +174,8 @@ func DoRegistration(js []byte, cook []*http.Cookie, username string, lastname st
 	//params.Set("IsChecked","false");
 	params.Set("CaptchaDeText",jsStruct.DeText);
 	params.Set("CaptchaInputText", strings.ToUpper(jsStruct.CapchaUri));
+
+	fmt.Println(params.Encode())
 
 	req, err := http.NewRequest("POST", uri, strings.NewReader(params.Encode()))
 	req.Header.Set("accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9")
